@@ -12,3 +12,8 @@ commands:
     usage: "/eventmessage"
     permission: microppplugin.command.eventmessage
     permission-message: "Nope"
+  getstick:
+    description: "Get stick"
+    usage: "/getstick"
+    permission: microppplugin.command.getstick
+    permission-message: "Nope"
