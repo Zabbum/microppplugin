@@ -1,0 +1,14 @@
+name: microppplugin
+version: '1.0-SNAPSHOT'
+main: com.github.zabbum.microppplugin.Microppplugin
+description: Plugin for microPP server
+authors:
+  - XmoxEL
+api-version: '1.21'
+
+commands:
+  eventmessage:
+    description: "Display current event message"
+    usage: "/eventmessage"
+    permission: microppplugin.command.eventmessage
+    permission-message: "Nope"

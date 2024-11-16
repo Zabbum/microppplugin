@@ -1,0 +1,5 @@
+day: 0
+event-start-time: "12:00"
+messages:
+  no-event-message: "Dzisiaj brak eventu. Eventy będą zaczynać się od 3. dnia."
+  no-event-until-message: "Event rozpoczyna się o "
