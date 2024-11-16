@@ -1,9 +1,16 @@
 package com.github.zabbum.microppplugin;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.*;
+import org.bukkit.entity.AreaEffectCloud;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -31,6 +38,15 @@ public class StickEventListener implements Listener {
             PersistentDataContainer container = meta.getPersistentDataContainer();
 
             if (container.has(key, PersistentDataType.STRING) && Objects.equals(container.get(key, PersistentDataType.STRING), "001")) {
+                Bukkit.broadcast(
+                        Component.text(player.getName())
+                                .color(NamedTextColor.RED)
+                                .decoration(TextDecoration.BOLD, true)
+                                .append(Component.text(" użył KIJKA PRAWDY!")
+                                        .color(NamedTextColor.GOLD)
+                                )
+                );
+
                 Arrow arrow = player.launchProjectile(Arrow.class);
                 arrow.setMetadata("theArrow", new FixedMetadataValue(Microppplugin.getInstance(), true));
                 arrow.setVelocity(player.getLocation().getDirection().multiply(2));
