@@ -17,3 +17,8 @@ commands:
     usage: "/getstick"
     permission: microppplugin.command.getstick
     permission-message: "Nope"
+  gethorse:
+    description: "Get horse artifact"
+    usage: "/gethorse"
+    permission: microppplugin.command.gethorse
+    permission-message: "Nope"

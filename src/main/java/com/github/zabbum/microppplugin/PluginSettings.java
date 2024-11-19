@@ -10,12 +10,13 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.UUID;
 
 @NoArgsConstructor
-public class MessageSettings {
+public class PluginSettings {
     private final Logger log = Microppplugin.getInstance().getLog();
     @Getter
-    private final static MessageSettings instance = new MessageSettings();
+    private final static PluginSettings instance = new PluginSettings();
     private File configFile;
     private YamlConfiguration config;
 
@@ -28,6 +29,8 @@ public class MessageSettings {
     @Getter
     private String noEventMessage;
     private String noEventUntilMessage;
+    @Getter
+    private UUID horseUUID;
 
     public void load() {
         configFile = new File(Microppplugin.getInstance().getDataFolder(), "messages-config.yml");
@@ -61,7 +64,13 @@ public class MessageSettings {
         eventStartTime = LocalTime.parse(config.getString("event-start-time"));
         noEventMessage = config.getString("messages.no-event-message");
         noEventUntilMessage = config.getString("messages.no-event-until-message");
-        log.info("Event messages loaded.");
+        try {
+            horseUUID = UUID.fromString(config.getString("horse-uuid"));
+        }
+        catch (NullPointerException e) {
+            horseUUID = null;
+        }
+        log.info("Settings loaded.");
 
     }
 
@@ -81,6 +90,11 @@ public class MessageSettings {
     public void setDay(int day) {
         this.day = day;
         set("day", day);
+    }
+
+    public void setHorseUUID(UUID uuid) {
+        this.horseUUID = uuid;
+        set("horse-uuid", uuid.toString());
     }
 
     public String getNoEventUntilMessage() {

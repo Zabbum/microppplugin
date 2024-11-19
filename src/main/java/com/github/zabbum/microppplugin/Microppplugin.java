@@ -1,5 +1,9 @@
 package com.github.zabbum.microppplugin;
 
+import com.github.zabbum.microppplugin.horse.GetHorseCommand;
+import com.github.zabbum.microppplugin.horse.HorseEventListener;
+import com.github.zabbum.microppplugin.stick.GetStickCommand;
+import com.github.zabbum.microppplugin.stick.StickEventListener;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -14,11 +18,13 @@ public final class Microppplugin extends JavaPlugin {
         // Commands handling
         getCommand("eventmessage").setExecutor(new EventMessageCommand());
         getCommand("getstick").setExecutor(new GetStickCommand());
+        getCommand("gethorse").setExecutor(new GetHorseCommand());
         // Load settings
-        MessageSettings.getInstance().load();
+        PluginSettings.getInstance().load();
         // Event handlers
         getServer().getPluginManager().registerEvents(new StickEventListener(), this);
         getServer().getPluginManager().registerEvents(new DeathEventListener(), this);
+        getServer().getPluginManager().registerEvents(new HorseEventListener(), this);
 
         // Inform about event periodically
         BukkitTask task = new MessageTask(this).runTaskTimer(this, 0, 200);

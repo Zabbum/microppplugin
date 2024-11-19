@@ -26,9 +26,9 @@ public class EventMessageCommand implements CommandExecutor, TabExecutor {
                 .append(Component.text("micro").color(NamedTextColor.LIGHT_PURPLE))
                 .append(Component.text("PP").color(NamedTextColor.YELLOW).decoration(TextDecoration.BOLD, true))
                 .append(Component.text("] ").color(NamedTextColor.WHITE))
-                .append(Component.text("DZIEŃ "+(MessageSettings.getInstance().getDay()+1)+".").color(NamedTextColor.GREEN))
+                .append(Component.text("DZIEŃ "+(PluginSettings.getInstance().getDay()+1)+".").color(NamedTextColor.GREEN))
                 .append(Component.text(" - ").color(NamedTextColor.WHITE))
-                .append(Component.text(MessageSettings.getInstance().getEventMessage())
+                .append(Component.text(PluginSettings.getInstance().getEventMessage())
                         .color(NamedTextColor.AQUA)
                         .decoration(TextDecoration.BOLD, true));
 

@@ -13,11 +13,11 @@ public class MessageTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        MessageSettings messageSettings = MessageSettings.getInstance();
+        PluginSettings pluginSettings = PluginSettings.getInstance();
 
-        messageSettings.setDay((int) ChronoUnit.DAYS.between(messageSettings.getStartDate(), LocalDate.now()));
+        pluginSettings.setDay((int) ChronoUnit.DAYS.between(pluginSettings.getStartDate(), LocalDate.now()));
 
-        plugin.getSLF4JLogger().info("Start date: {}", MessageSettings.getInstance().getStartDate().toString());
+        plugin.getSLF4JLogger().info("Start date: {}", PluginSettings.getInstance().getStartDate().toString());
         plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "eventmessage");
     }
 }

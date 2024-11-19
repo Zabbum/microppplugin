@@ -1,5 +1,6 @@
-package com.github.zabbum.microppplugin;
+package com.github.zabbum.microppplugin.stick;
 
+import com.github.zabbum.microppplugin.Microppplugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
