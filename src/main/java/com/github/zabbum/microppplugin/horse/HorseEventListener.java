@@ -6,6 +6,10 @@ import com.github.zabbum.microppplugin.PluginSettings;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
+import net.luckperms.api.model.user.User;
+import net.luckperms.api.node.Node;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
@@ -16,13 +20,14 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.slf4j.Logger;
 
 import java.util.Objects;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 public class HorseEventListener implements Listener {
-    private static final JavaPlugin plugin = Microppplugin.getInstance();
+    private static final Logger log = Microppplugin.getInstance().getSLF4JLogger();
 
     @EventHandler
     public void onEquip(PlayerArmorChangeEvent event) {
@@ -43,9 +48,29 @@ public class HorseEventListener implements Listener {
                                 .color(NamedTextColor.RED)
                                 .decoration(TextDecoration.BOLD, true)
                                 .append(Component.text(" założył KOŃSKI CYCNIK!")
-                                        .color(NamedTextColor.GOLD)
+                                        .color(NamedTextColor.GREEN)
                                 )
                 );
+
+                // Revoke previous player's suffix and give it to new one
+                LuckPerms luckPermsApi = LuckPermsProvider.get();
+
+                try {
+                    CompletableFuture<User> userFuture = luckPermsApi.getUserManager()
+                            .loadUser(PluginSettings.getInstance().getHorseHolderUUID());
+                    userFuture.thenAcceptAsync(oldUser -> {
+                        oldUser.data().remove(Node.builder("group.horseholder").build());
+                        luckPermsApi.getUserManager().saveUser(oldUser);
+                    });
+                }
+                catch (NullPointerException e) {
+                    log.warn("Skill issue, null pointer exception");
+                }
+
+                User newUser = luckPermsApi.getUserManager().getUser(player.getUniqueId());
+                newUser.data().add(Node.builder("group.horseholder").build());
+                luckPermsApi.getUserManager().saveUser(newUser);
+                PluginSettings.getInstance().setHorseHolderUUID(player.getUniqueId());
 
                 // If there exists the horse, kill it
                 UUID oldHorseUUID = PluginSettings.getInstance().getHorseUUID();

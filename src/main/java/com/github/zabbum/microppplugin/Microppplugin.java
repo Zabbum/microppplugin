@@ -15,6 +15,7 @@ public final class Microppplugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
         // Commands handling
         getCommand("eventmessage").setExecutor(new EventMessageCommand());
         getCommand("getstick").setExecutor(new GetStickCommand());
@@ -22,12 +23,13 @@ public final class Microppplugin extends JavaPlugin {
         // Load settings
         PluginSettings.getInstance().load();
         // Event handlers
-        getServer().getPluginManager().registerEvents(new StickEventListener(), this);
         getServer().getPluginManager().registerEvents(new DeathEventListener(), this);
+        getServer().getPluginManager().registerEvents(new FirePreventionListener(), this);
+        getServer().getPluginManager().registerEvents(new StickEventListener(), this);
         getServer().getPluginManager().registerEvents(new HorseEventListener(), this);
 
         // Inform about event periodically
-        BukkitTask task = new MessageTask(this).runTaskTimer(this, 0, 200);
+        BukkitTask task = new MessageTask(this).runTaskTimer(this, 0, PluginSettings.getInstance().getEventMessageInterval());
 
         log.info("Microppplugin enabled!");
     }

@@ -21,6 +21,10 @@ public class PluginSettings {
     private YamlConfiguration config;
 
     @Getter
+    private Integer eventMessageInterval;
+    @Getter
+    private Integer maxDistanceDromCenter;
+    @Getter
     private Integer day;
     @Getter
     private LocalTime eventStartTime;
@@ -31,13 +35,17 @@ public class PluginSettings {
     private String noEventUntilMessage;
     @Getter
     private UUID horseUUID;
+    @Getter
+    private UUID stickHolderUUID;
+    @Getter
+    private UUID horseHolderUUID;
 
     public void load() {
-        configFile = new File(Microppplugin.getInstance().getDataFolder(), "messages-config.yml");
+        configFile = new File(Microppplugin.getInstance().getDataFolder(), "config.yml");
 
         // If there is no config file, create it
         if (!configFile.exists()) {
-            Microppplugin.getInstance().saveResource("messages-config.yml", false);
+            Microppplugin.getInstance().saveResource("config.yml", false);
         }
 
         config = new YamlConfiguration();
@@ -60,15 +68,26 @@ public class PluginSettings {
         startDate = LocalDate.parse(tmpDateString);
 
         // Load data from yml
+        eventMessageInterval = config.getInt("event-message-interval");
+        maxDistanceDromCenter = config.getInt("max-distance-drom-center");
         day = config.getInt("day");
         eventStartTime = LocalTime.parse(config.getString("event-start-time"));
         noEventMessage = config.getString("messages.no-event-message");
         noEventUntilMessage = config.getString("messages.no-event-until-message");
         try {
             horseUUID = UUID.fromString(config.getString("horse-uuid"));
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             horseUUID = null;
+        }
+        try {
+            stickHolderUUID = UUID.fromString(config.getString("stickholder-uuid"));
+        } catch (NullPointerException e) {
+            stickHolderUUID = null;
+        }
+        try {
+            horseHolderUUID = UUID.fromString(config.getString("horseholder-uuid"));
+        } catch (NullPointerException e) {
+            horseHolderUUID = null;
         }
         log.info("Settings loaded.");
 
@@ -97,8 +116,18 @@ public class PluginSettings {
         set("horse-uuid", uuid.toString());
     }
 
+    public void setStickHolderUUID(UUID uuid) {
+        this.stickHolderUUID = uuid;
+        set("stickholder-uuid", uuid.toString());
+    }
+
+    public void setHorseHolderUUID(UUID uuid) {
+        this.horseHolderUUID = uuid;
+        set("horseholder-uuid", uuid.toString());
+    }
+
     public String getNoEventUntilMessage() {
-        return noEventUntilMessage+eventStartTime.toString()+".";
+        return noEventUntilMessage + eventStartTime.toString() + ".";
     }
 
     public String getEventMessage() {

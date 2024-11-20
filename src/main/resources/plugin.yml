@@ -5,6 +5,10 @@ description: Plugin for microPP server
 authors:
   - XmoxEL
 api-version: '1.21'
+loadbefore:
+  - LuckPerms
+depend:
+  - LuckPerms
 
 commands:
   eventmessage:
