@@ -48,7 +48,7 @@ public class HorseEventListener implements Listener {
                                 .color(NamedTextColor.RED)
                                 .decoration(TextDecoration.BOLD, true)
                                 .append(Component.text(" założył KOŃSKI CYCNIK!")
-                                        .color(NamedTextColor.GREEN)
+                                        .color(NamedTextColor.DARK_GREEN)
                                 )
                 );
 
@@ -97,7 +97,7 @@ public class HorseEventListener implements Listener {
 
                 ZombieHorse theHorse = (ZombieHorse) player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOMBIE_HORSE);
                 theHorse.customName(Component.text("SZALONY KOŃ")
-                        .color(NamedTextColor.GREEN)
+                        .color(NamedTextColor.DARK_GREEN)
                         .decoration(TextDecoration.BOLD, true));
                 theHorse.setTamed(true);
                 theHorse.getInventory().setSaddle(new ItemStack(Material.SADDLE));

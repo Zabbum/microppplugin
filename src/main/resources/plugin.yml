@@ -28,11 +28,11 @@ commands:
     permission-message: "Nope"
   apocalypse:
     description: "Apocalypse event"
-    usage: "/apocalypse <start|end>"
+    usage: "/apocalypse < start | end >"
     permission: microppplugin.command.apocalypse
     permission-message: "Nope"
   setborder:
     description: "Set world border"
-    usage: "/setborder <size devided by 2>"
+    usage: "/setborder < size devided by 2 >"
     permission: microppplugin.command.setborder
     permission-message: "Nope"

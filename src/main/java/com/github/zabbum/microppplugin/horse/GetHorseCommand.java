@@ -31,7 +31,7 @@ public class GetHorseCommand implements CommandExecutor, TabCompleter {
             ItemMeta meta = horseChestplate.getItemMeta();
 
             meta.displayName(Component.text("KOŃSKI CYCNIK")
-                    .color(NamedTextColor.GREEN)
+                    .color(NamedTextColor.DARK_GREEN)
                     .decoration(TextDecoration.BOLD, true)
                     .decoration(TextDecoration.ITALIC, false));
             meta.lore(List.of(
