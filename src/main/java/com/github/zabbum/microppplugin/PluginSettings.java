@@ -2,6 +2,8 @@ package com.github.zabbum.microppplugin;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.bukkit.Bukkit;
+import org.bukkit.WorldBorder;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.slf4j.Logger;
@@ -23,7 +25,7 @@ public class PluginSettings {
     @Getter
     private Integer eventMessageInterval;
     @Getter
-    private Integer maxDistanceDromCenter;
+    private Integer maxDistanceFromCenter;
     @Getter
     private Integer day;
     @Getter
@@ -39,6 +41,8 @@ public class PluginSettings {
     private UUID stickHolderUUID;
     @Getter
     private UUID horseHolderUUID;
+    @Getter
+    private Integer apocalypseFireworkInterval;
 
     public void load() {
         configFile = new File(Microppplugin.getInstance().getDataFolder(), "config.yml");
@@ -69,11 +73,18 @@ public class PluginSettings {
 
         // Load data from yml
         eventMessageInterval = config.getInt("event-message-interval");
-        maxDistanceDromCenter = config.getInt("max-distance-drom-center");
+
+        maxDistanceFromCenter = config.getInt("max-distance-from-center");
+        // Set world border
+        WorldBorder worldBorder = Bukkit.getWorlds().getFirst().getWorldBorder();
+        worldBorder.setCenter(0, 0);
+        worldBorder.setSize(PluginSettings.getInstance().getMaxDistanceFromCenter() * 2);
+
         day = config.getInt("day");
         eventStartTime = LocalTime.parse(config.getString("event-start-time"));
         noEventMessage = config.getString("messages.no-event-message");
         noEventUntilMessage = config.getString("messages.no-event-until-message");
+        apocalypseFireworkInterval = config.getInt("apocalypse.firework-interval");
         try {
             horseUUID = UUID.fromString(config.getString("horse-uuid"));
         } catch (NullPointerException e) {
@@ -109,6 +120,14 @@ public class PluginSettings {
     public void setDay(int day) {
         this.day = day;
         set("day", day);
+    }
+
+    public void setMaxDistanceFromCenter(int maxDistanceFromCenter) {
+        this.maxDistanceFromCenter = maxDistanceFromCenter;
+        set("max-distance-from-center", maxDistanceFromCenter);
+        WorldBorder worldBorder = Bukkit.getWorlds().getFirst().getWorldBorder();
+        worldBorder.setCenter(0, 0);
+        worldBorder.setSize(maxDistanceFromCenter * 2);
     }
 
     public void setHorseUUID(UUID uuid) {

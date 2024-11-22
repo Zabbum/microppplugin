@@ -12,7 +12,7 @@ public class FirePreventionListener implements Listener {
         if (event.getNewState().getType() == Material.FIRE) {
             Location location = event.getBlock().getLocation();
 
-            if (shouldPrevent(location, PluginSettings.getInstance().getMaxDistanceDromCenter())) {
+            if (shouldPrevent(location, PluginSettings.getInstance().getMaxDistanceFromCenter())) {
                 event.setCancelled(true);
             }
         }

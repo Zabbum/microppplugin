@@ -1,5 +1,6 @@
 package com.github.zabbum.microppplugin;
 
+import com.github.zabbum.microppplugin.apocalypse.ApocalypseCommand;
 import com.github.zabbum.microppplugin.horse.GetHorseCommand;
 import com.github.zabbum.microppplugin.horse.HorseEventListener;
 import com.github.zabbum.microppplugin.stick.GetStickCommand;
@@ -20,6 +21,8 @@ public final class Microppplugin extends JavaPlugin {
         getCommand("eventmessage").setExecutor(new EventMessageCommand());
         getCommand("getstick").setExecutor(new GetStickCommand());
         getCommand("gethorse").setExecutor(new GetHorseCommand());
+        getCommand("apocalypse").setExecutor(new ApocalypseCommand());
+        getCommand("setborder").setExecutor(new SetborderCommand());
         // Load settings
         PluginSettings.getInstance().load();
         // Event handlers
@@ -30,6 +33,8 @@ public final class Microppplugin extends JavaPlugin {
 
         // Inform about event periodically
         BukkitTask task = new MessageTask(this).runTaskTimer(this, 0, PluginSettings.getInstance().getEventMessageInterval());
+
+
 
         log.info("Microppplugin enabled!");
     }
