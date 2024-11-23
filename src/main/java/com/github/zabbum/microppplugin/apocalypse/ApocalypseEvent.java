@@ -32,6 +32,7 @@ public class ApocalypseEvent {
 
         int period = PluginSettings.getInstance().getApocalypseFireworkInterval();
 
+
         task = Bukkit.getScheduler().runTaskTimer(plugin, () -> {
             // Generate and explode firework
             Integer maxDistance = PluginSettings.getInstance().getMaxDistanceFromCenter();
@@ -58,18 +59,23 @@ public class ApocalypseEvent {
 
             location.getWorld().createExplosion(location, 5, true, true);
 
-            log.info("Firework detonated at: x: {}, y: {}, z: {}", location.getX(), location.getY(), location.getZ());
             log.info("Time: {}", Bukkit.getWorlds().getFirst().getTime());
 
             if (Bukkit.getWorlds().getFirst().getTime() < 12600) {
-                Bukkit.getWorlds().getFirst().setTime(Bukkit.getWorlds().getFirst().getTime() + 20);
+                Bukkit.getServerTickManager().setTickRate(80);
             }
+            else {
+                Bukkit.getServerTickManager().setTickRate(20);
+            }
+            log.warn("Tick rate: {}", Bukkit.getServerTickManager().getTickRate());
         }, 0, period);
 
         Bukkit.broadcast(Component.text("Rozpoczęła się apokalipsa!")
                 .color(NamedTextColor.DARK_PURPLE)
                 .decoration(TextDecoration.BOLD, true)
         );
+
+        log.info("ApocalypseEvent started!");
     }
 
     public synchronized void end() {
@@ -80,6 +86,9 @@ public class ApocalypseEvent {
 
         task.cancel();
         task = null;
+
+        Bukkit.getServerTickManager().setTickRate(20);
+
         log.info("ApocalypseEvent stopped");
 
         Bukkit.broadcast(Component.text("Zakończyła się apokalipsa!")

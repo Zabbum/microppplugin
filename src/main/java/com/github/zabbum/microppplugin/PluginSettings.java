@@ -38,7 +38,7 @@ public class PluginSettings {
     @Getter
     private UUID horseUUID;
     @Getter
-    private UUID stickHolderUUID;
+    private UUID bowHolderUUID;
     @Getter
     private UUID horseHolderUUID;
     @Getter
@@ -91,9 +91,9 @@ public class PluginSettings {
             horseUUID = null;
         }
         try {
-            stickHolderUUID = UUID.fromString(config.getString("stickholder-uuid"));
+            bowHolderUUID = UUID.fromString(config.getString("bowholder-uuid"));
         } catch (NullPointerException e) {
-            stickHolderUUID = null;
+            bowHolderUUID = null;
         }
         try {
             horseHolderUUID = UUID.fromString(config.getString("horseholder-uuid"));
@@ -135,9 +135,9 @@ public class PluginSettings {
         set("horse-uuid", uuid.toString());
     }
 
-    public void setStickHolderUUID(UUID uuid) {
-        this.stickHolderUUID = uuid;
-        set("stickholder-uuid", uuid.toString());
+    public void setBowHolderUUID(UUID uuid) {
+        this.bowHolderUUID = uuid;
+        set("bowholder-uuid", uuid.toString());
     }
 
     public void setHorseHolderUUID(UUID uuid) {

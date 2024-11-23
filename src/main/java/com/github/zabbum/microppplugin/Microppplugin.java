@@ -3,8 +3,8 @@ package com.github.zabbum.microppplugin;
 import com.github.zabbum.microppplugin.apocalypse.ApocalypseCommand;
 import com.github.zabbum.microppplugin.horse.GetHorseCommand;
 import com.github.zabbum.microppplugin.horse.HorseEventListener;
-import com.github.zabbum.microppplugin.stick.GetStickCommand;
-import com.github.zabbum.microppplugin.stick.StickEventListener;
+import com.github.zabbum.microppplugin.bow.GetBowCommand;
+import com.github.zabbum.microppplugin.bow.BowEventListener;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -19,7 +19,7 @@ public final class Microppplugin extends JavaPlugin {
 
         // Commands handling
         getCommand("eventmessage").setExecutor(new EventMessageCommand());
-        getCommand("getstick").setExecutor(new GetStickCommand());
+        getCommand("getbow").setExecutor(new GetBowCommand());
         getCommand("gethorse").setExecutor(new GetHorseCommand());
         getCommand("apocalypse").setExecutor(new ApocalypseCommand());
         getCommand("setborder").setExecutor(new SetborderCommand());
@@ -28,7 +28,7 @@ public final class Microppplugin extends JavaPlugin {
         // Event handlers
         getServer().getPluginManager().registerEvents(new DeathEventListener(), this);
         getServer().getPluginManager().registerEvents(new FirePreventionListener(), this);
-        getServer().getPluginManager().registerEvents(new StickEventListener(), this);
+        getServer().getPluginManager().registerEvents(new BowEventListener(), this);
         getServer().getPluginManager().registerEvents(new HorseEventListener(), this);
 
         // Inform about event periodically

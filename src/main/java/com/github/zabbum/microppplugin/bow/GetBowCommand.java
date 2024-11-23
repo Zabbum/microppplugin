@@ -1,4 +1,4 @@
-package com.github.zabbum.microppplugin.stick;
+package com.github.zabbum.microppplugin.bow;
 
 import com.github.zabbum.microppplugin.Microppplugin;
 import net.kyori.adventure.text.Component;
@@ -10,6 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -21,16 +22,16 @@ import org.jetbrains.annotations.Nullable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class GetStickCommand implements CommandExecutor, TabCompleter {
+public class GetBowCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
         if (sender instanceof Player player) {
 
-            ItemStack theStick = new ItemStack(Material.STICK);
+            ItemStack theStick = new ItemStack(Material.BOW);
             ItemMeta meta = theStick.getItemMeta();
             meta.displayName(
-                    Component.text("KIJEK PRAWDY")
+                    Component.text("PIERUŃSKI ŁUK")
                             .color(NamedTextColor.GOLD)
                             .decoration(TextDecoration.BOLD, true)
                             .decoration(TextDecoration.ITALIC, false)
@@ -46,8 +47,10 @@ public class GetStickCommand implements CommandExecutor, TabCompleter {
                             )
             ));
             meta.setEnchantmentGlintOverride(true);
+            meta.addEnchant(Enchantment.INFINITY, 1, false);
+            meta.setUnbreakable(true);
 
-            NamespacedKey key = new NamespacedKey(Microppplugin.getInstance(), "theStick");
+            NamespacedKey key = new NamespacedKey(Microppplugin.getInstance(), "theBow");
             PersistentDataContainer container = meta.getPersistentDataContainer();
             container.set(key, PersistentDataType.STRING, "001");
 

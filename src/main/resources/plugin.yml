@@ -16,10 +16,10 @@ commands:
     usage: "/eventmessage"
     permission: microppplugin.command.eventmessage
     permission-message: "Nope"
-  getstick:
-    description: "Get stick"
-    usage: "/getstick"
-    permission: microppplugin.command.getstick
+  getbow:
+    description: "Get bow artifact"
+    usage: "/getbow"
+    permission: microppplugin.command.getbow
     permission-message: "Nope"
   gethorse:
     description: "Get horse artifact"

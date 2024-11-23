@@ -24,7 +24,6 @@ import org.slf4j.Logger;
 
 import java.util.Objects;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
 public class HorseEventListener implements Listener {
     private static final Logger log = Microppplugin.getInstance().getSLF4JLogger();
@@ -56,12 +55,10 @@ public class HorseEventListener implements Listener {
                 LuckPerms luckPermsApi = LuckPermsProvider.get();
 
                 try {
-                    CompletableFuture<User> userFuture = luckPermsApi.getUserManager()
-                            .loadUser(PluginSettings.getInstance().getHorseHolderUUID());
-                    userFuture.thenAcceptAsync(oldUser -> {
-                        oldUser.data().remove(Node.builder("group.horseholder").build());
-                        luckPermsApi.getUserManager().saveUser(oldUser);
-                    });
+                    User oldUser = luckPermsApi.getUserManager()
+                            .getUser(PluginSettings.getInstance().getHorseHolderUUID());
+                    oldUser.data().remove(Node.builder("group.horseholder").build());
+                    luckPermsApi.getUserManager().saveUser(oldUser);
                 }
                 catch (NullPointerException e) {
                     log.warn("Skill issue, null pointer exception");
