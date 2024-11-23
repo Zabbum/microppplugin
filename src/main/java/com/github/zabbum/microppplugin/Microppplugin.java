@@ -5,6 +5,8 @@ import com.github.zabbum.microppplugin.horse.GetHorseCommand;
 import com.github.zabbum.microppplugin.horse.HorseEventListener;
 import com.github.zabbum.microppplugin.bow.GetBowCommand;
 import com.github.zabbum.microppplugin.bow.BowEventListener;
+import com.github.zabbum.microppplugin.villager.SpawnvillagerCommand;
+import com.github.zabbum.microppplugin.villager.VillagerTradeLockListener;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -23,6 +25,7 @@ public final class Microppplugin extends JavaPlugin {
         getCommand("gethorse").setExecutor(new GetHorseCommand());
         getCommand("apocalypse").setExecutor(new ApocalypseCommand());
         getCommand("setborder").setExecutor(new SetborderCommand());
+        getCommand("spawnvillager").setExecutor(new SpawnvillagerCommand());
         // Load settings
         PluginSettings.getInstance().load();
         // Event handlers
@@ -30,6 +33,7 @@ public final class Microppplugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FirePreventionListener(), this);
         getServer().getPluginManager().registerEvents(new BowEventListener(), this);
         getServer().getPluginManager().registerEvents(new HorseEventListener(), this);
+        getServer().getPluginManager().registerEvents(new VillagerTradeLockListener(), this);
 
         // Inform about event periodically
         BukkitTask task = new MessageTask(this).runTaskTimer(this, 0, PluginSettings.getInstance().getEventMessageInterval());

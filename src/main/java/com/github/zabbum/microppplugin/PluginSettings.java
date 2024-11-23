@@ -42,6 +42,8 @@ public class PluginSettings {
     @Getter
     private UUID horseHolderUUID;
     @Getter
+    private UUID villagerUUID;
+    @Getter
     private Integer apocalypseFireworkInterval;
     @Getter
     private Integer apocalypseSkeletonInterval;
@@ -103,6 +105,11 @@ public class PluginSettings {
         } catch (NullPointerException e) {
             horseHolderUUID = null;
         }
+        try {
+            villagerUUID = UUID.fromString(config.getString("villager-uuid"));
+        } catch (NullPointerException e) {
+            villagerUUID = null;
+        }
         log.info("Settings loaded.");
 
     }
@@ -146,6 +153,11 @@ public class PluginSettings {
     public void setHorseHolderUUID(UUID uuid) {
         this.horseHolderUUID = uuid;
         set("horseholder-uuid", uuid.toString());
+    }
+
+    public void setVillagerUUID(UUID uuid) {
+        this.villagerUUID = uuid;
+        set("villager-uuid", uuid.toString());
     }
 
     public String getNoEventUntilMessage() {

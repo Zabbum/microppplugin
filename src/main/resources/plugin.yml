@@ -33,6 +33,11 @@ commands:
     permission-message: "Nope"
   setborder:
     description: "Set world border"
-    usage: "/setborder < size devided by 2 >"
+    usage: "/setborder < size >"
     permission: microppplugin.command.setborder
+    permission-message: "Nope"
+  spawnvillager:
+    description: "Spawn the villager from event"
+    usage: "/spawn villager"
+    permission: microppplugin.command.spawnvillager
     permission-message: "Nope"

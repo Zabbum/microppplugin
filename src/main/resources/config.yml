@@ -1,7 +1,7 @@
 max-distance-from-center: 64
 day: 0
 event-start-time: "12:00"
-event-message-interval: 2000
+event-message-interval: 4000
 messages:
   no-event-message: "Dzisiaj brak eventu. Eventy będą zaczynać się od 3. dnia."
   no-event-until-message: "Event rozpoczyna się o "
