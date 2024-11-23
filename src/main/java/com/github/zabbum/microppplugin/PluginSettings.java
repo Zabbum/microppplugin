@@ -43,6 +43,8 @@ public class PluginSettings {
     private UUID horseHolderUUID;
     @Getter
     private Integer apocalypseFireworkInterval;
+    @Getter
+    private Integer apocalypseSkeletonInterval;
 
     public void load() {
         configFile = new File(Microppplugin.getInstance().getDataFolder(), "config.yml");
@@ -85,6 +87,7 @@ public class PluginSettings {
         noEventMessage = config.getString("messages.no-event-message");
         noEventUntilMessage = config.getString("messages.no-event-until-message");
         apocalypseFireworkInterval = config.getInt("apocalypse.firework-interval");
+        apocalypseSkeletonInterval = config.getInt("apocalypse.skeleton-interval");
         try {
             horseUUID = UUID.fromString(config.getString("horse-uuid"));
         } catch (NullPointerException e) {

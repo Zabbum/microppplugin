@@ -7,3 +7,4 @@ messages:
   no-event-until-message: "Event rozpoczyna się o "
 apocalypse:
   firework-interval: 10
+  skeleton-interval: 160
