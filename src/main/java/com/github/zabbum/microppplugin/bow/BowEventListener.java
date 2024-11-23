@@ -35,7 +35,7 @@ public class BowEventListener implements Listener {
     public void onShoot(EntityShootBowEvent event) {
         // Check if player is using THE BOW
         Arrow arrow = (Arrow) event.getProjectile();
-        Player player = (Player) event.getEntity();
+        LivingEntity shooter = event.getEntity();
         ItemStack bow = event.getBow();
 
         if (bow.getType() == Material.BOW && bow.getItemMeta() != null) {
@@ -44,7 +44,7 @@ public class BowEventListener implements Listener {
             PersistentDataContainer container = meta.getPersistentDataContainer();
 
             if (container.has(key, PersistentDataType.STRING) && Objects.equals(container.get(key, PersistentDataType.STRING), "001")) {
-                if (player != null) {
+                if (shooter instanceof Player player) {
                     Bukkit.broadcast(
                             Component.text(player.getName())
                                     .color(NamedTextColor.RED)
@@ -79,7 +79,7 @@ public class BowEventListener implements Listener {
 
                 // Launch a projectile
                 arrow.setMetadata("theArrow", new FixedMetadataValue(Microppplugin.getInstance(), true));
-                arrow.setVelocity(player.getLocation().getDirection().multiply(2));
+                arrow.setVelocity(shooter.getLocation().getDirection().multiply(2));
             }
         }
     }
