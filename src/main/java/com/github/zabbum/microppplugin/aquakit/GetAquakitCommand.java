@@ -34,7 +34,7 @@ public class GetAquakitCommand implements CommandExecutor, TabCompleter {
             ItemMeta tridentMeta = trident.getItemMeta();
 
             tridentMeta.displayName(Component.text("OKOŃSKI WIDELEC")
-                    .color(NamedTextColor.AQUA)
+                    .color(NamedTextColor.DARK_AQUA)
                     .decoration(TextDecoration.BOLD, true)
                     .decoration(TextDecoration.ITALIC, false));
             tridentMeta.lore(List.of(

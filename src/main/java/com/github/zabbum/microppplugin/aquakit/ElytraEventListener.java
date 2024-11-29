@@ -62,6 +62,9 @@ public class ElytraEventListener implements Listener {
                 } catch (NullPointerException e) {
                     log.warn("Skill issue, null pointer exception");
                 }
+                User newUser = luckPermsApi.getUserManager().getUser(player.getUniqueId());
+                newUser.data().add(Node.builder("group.elytraholder").build());
+                luckPermsApi.getUserManager().saveUser(newUser);
 
                 // Change weather
                 Bukkit.getWorlds().getFirst().setStorm(true);
@@ -76,7 +79,9 @@ public class ElytraEventListener implements Listener {
         if (event.getEntity() instanceof Player player) {
             ItemStack chest = player.getInventory().getChestplate();
 
-            if (chest != null && chest.getType() == Material.ELYTRA && chest.getItemMeta() != null) {
+            if ((event.getCause() == EntityDamageEvent.DamageCause.FALL
+                    || event.getCause() == EntityDamageEvent.DamageCause.FLY_INTO_WALL) &&
+                    chest != null && chest.getType() == Material.ELYTRA && chest.getItemMeta() != null) {
                 ItemMeta meta = chest.getItemMeta();
                 NamespacedKey key = new NamespacedKey(Microppplugin.getInstance(), "theElytra");
                 PersistentDataContainer container = meta.getPersistentDataContainer();
