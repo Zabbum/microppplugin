@@ -38,8 +38,8 @@ public class SkeletonsRunnable implements Runnable {
                 .decoration(TextDecoration.BOLD, true));
         zombieHorse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
         zombieHorse.setJumpStrength(1.3);
-        zombieHorse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(1.2);
-        zombieHorse.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20);
+        zombieHorse.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(1.2);
+        zombieHorse.getAttribute(Attribute.MAX_HEALTH).setBaseValue(20);
         zombieHorse.setHealth(20);
 
         // Spawn skeleton that will be riding this horse
@@ -48,7 +48,7 @@ public class SkeletonsRunnable implements Runnable {
                 .color(NamedTextColor.DARK_PURPLE)
                 .decoration(TextDecoration.BOLD, true)
         );
-        skeleton.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20);
+        skeleton.getAttribute(Attribute.MAX_HEALTH).setBaseValue(20);
         skeleton.setHealth(20);
 
         ItemStack chestplate = new ItemStack(Material.NETHERITE_CHESTPLATE);

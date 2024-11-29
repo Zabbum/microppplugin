@@ -3,7 +3,9 @@ day: 0
 event-start-time: "12:00"
 event-message-interval: 4000
 messages:
-  no-event-message: "Dzisiaj brak eventu. Eventy będą zaczynać się od 3. dnia."
+  docs-message: "Zajrzyj na Google Docs ze spisem wszystkiego!"
+  docs-link: "https://docs.google.com/document/d/1xl1E1wnQLt5omSuAx1CEeo5Fl0vUiaof0qNCeUgfA5k/edit?usp=sharing"
+  no-event-message: "Dzisiaj brak eventu. Eventy będą zaczynać się od 2. dnia."
   no-event-until-message: "Event rozpoczyna się o "
 apocalypse:
   firework-interval: 10

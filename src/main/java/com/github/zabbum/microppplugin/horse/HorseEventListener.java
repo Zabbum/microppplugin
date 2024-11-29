@@ -99,8 +99,8 @@ public class HorseEventListener implements Listener {
                 theHorse.setTamed(true);
                 theHorse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
                 theHorse.setJumpStrength(2);
-                theHorse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(1.6);
-                theHorse.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(100);
+                theHorse.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(1.6);
+                theHorse.getAttribute(Attribute.MAX_HEALTH).setBaseValue(100);
                 theHorse.setHealth(100);
 
                 PluginSettings.getInstance().setHorseUUID(theHorse.getUniqueId());

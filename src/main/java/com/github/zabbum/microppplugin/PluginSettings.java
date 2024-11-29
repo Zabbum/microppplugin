@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -36,6 +38,10 @@ public class PluginSettings {
     private String noEventMessage;
     private String noEventUntilMessage;
     @Getter
+    private String docsMessage;
+    @Getter
+    private URI docsLink;
+    @Getter
     private UUID horseUUID;
     @Getter
     private UUID bowHolderUUID;
@@ -43,6 +49,8 @@ public class PluginSettings {
     private UUID horseHolderUUID;
     @Getter
     private UUID villagerUUID;
+    @Getter
+    private UUID elytraHolderUUID;
     @Getter
     private Integer apocalypseFireworkInterval;
     @Getter
@@ -88,6 +96,12 @@ public class PluginSettings {
         eventStartTime = LocalTime.parse(config.getString("event-start-time"));
         noEventMessage = config.getString("messages.no-event-message");
         noEventUntilMessage = config.getString("messages.no-event-until-message");
+        docsMessage = config.getString("messages.docs-message");
+        try {
+            docsLink = new URI(config.getString("messages.docs-link"));
+        } catch (URISyntaxException e) {
+            docsLink = null;
+        }
         apocalypseFireworkInterval = config.getInt("apocalypse.firework-interval");
         apocalypseSkeletonInterval = config.getInt("apocalypse.skeleton-interval");
         try {
@@ -109,6 +123,11 @@ public class PluginSettings {
             villagerUUID = UUID.fromString(config.getString("villager-uuid"));
         } catch (NullPointerException e) {
             villagerUUID = null;
+        }
+        try {
+            elytraHolderUUID = UUID.fromString(config.getString("elytra-uuid"));
+        } catch (NullPointerException e) {
+            elytraHolderUUID = null;
         }
         log.info("Settings loaded.");
 
@@ -158,6 +177,11 @@ public class PluginSettings {
     public void setVillagerUUID(UUID uuid) {
         this.villagerUUID = uuid;
         set("villager-uuid", uuid.toString());
+    }
+
+    public void setElytraHolderUUID(UUID uuid) {
+        this.elytraHolderUUID = uuid;
+        set("elytra-uuid", uuid.toString());
     }
 
     public String getNoEventUntilMessage() {

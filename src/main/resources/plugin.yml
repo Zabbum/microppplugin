@@ -41,3 +41,8 @@ commands:
     usage: "/spawn villager"
     permission: microppplugin.command.spawnvillager
     permission-message: "Nope"
+  getaquakit:
+    description: "Get equa kit artifacts"
+    usage: "/getaquakit"
+    permission: microppplugin.command.getaquakit
+    permission-message: "Nope"
