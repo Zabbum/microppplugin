@@ -1,0 +1,22 @@
+discord:
+  token: ""
+  server-id: 0
+  channel-id: 0
+  disabled: false
+
+role-mappings:
+  "557919551296241674": "mod"
+  "1440031734342221866": "pink"
+
+role-colors:
+  "pink": "e91e63"
+
+messages:
+  help: "<gray>Listę komend znajdziecie pod <green>/help<gray>."
+  communicates:
+    - "<aqua>Na serwerze istnieje obsługa <green><b>warpów</b><aqua>!"
+    - "<aqua>Zachęcamy do synchronizacji konta minecraft z kontem discord!<br>Można to zrobić za pomocą komendy <green>/kolor<aqua>."
+    - "<aqua>Plebiscyt bogactwa jest dostępny pod <green>/baltop<aqua>."
+    - "<aqua>Po śmierci możesz się teleportować do miejsca zgonu za pomocą <green>/back<aqua>."
+    - "<aqua>Możesz posiadać do 4 prywatnych domów, ustawianych za pomocą komendy <green>/sethome <i>nazwa_domu</i><aqua>.<br>Następnie, masz możliwość teleportacji do nich komendą <green>/home <i>nazwa_domu</i><aqua>."
+    - "<aqua>Możesz ukryć lub pokazać <red><b>PROMETER</b> za pomocą komendy <green>/prometer<aqua>."

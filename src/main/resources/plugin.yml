@@ -1,0 +1,23 @@
+name: micropp-dsc
+version: '${version}'
+
+main: work.kubas.microppDsc.MicroppDsc
+description: μPP discord plugin
+api-version: '26.2'
+load: POSTWORLD
+
+depend:
+  - LuckPerms
+  - Vault
+
+commands:
+  kolor:
+    description: "Zarządzanie kolorem w oparciu o role na discordzie."
+    usage: "/kolor"
+    permission: micropp-dsc.command.kolor
+    permission-message: "Moderacja patrzy!"
+  prometer:
+    description: "Schowanie/pokazanie licznika śmierci."
+    usage: "/prometer"
+    permission: micropp-dsc.command.prometer
+    permission-message: "Moderacja patrzy!"
